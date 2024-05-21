@@ -24,7 +24,7 @@ function TaskList() {
             リセット
           </button>
         </form>
-        <a className="register-button" href="/create-page">タスクを追加</a>
+        <a className="register-button" href="/create">タスクを追加</a>
       </div>
       <table>
         <thead>
