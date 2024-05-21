@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './TaskList.css'
 
 function TaskList() {
   const [todos, setTodos] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('http://localhost:8080/api/tasks')
@@ -10,6 +12,10 @@ function TaskList() {
       .then(data => setTodos(data))
       .catch(error => console.error('Error fetching data:', error));
   }, []);
+
+  const handleDeleteClick = (todo) => {
+    navigate(`/delete/${todo.id}`, { state: { todo } });
+  };
 
   return (
     <div className="task-list">
@@ -43,8 +49,8 @@ function TaskList() {
               <td>{todo.assignPersonName}</td>
               <td>
                 <div className="button-group">
-                  <a className="edit-button" href={`/edit-page/${todo.id}`}>編集</a>
-                  <a className="delete-button" href={`/delete-page/${todo.id}`}>削除</a>
+                  <button className="edit-button" onClick={() => navigate(`/edit-page/${todo.id}`)}>編集</button>
+                  <button className="delete-button" onClick={() => handleDeleteClick(todo)}>削除</button>
                 </div>
               </td>
             </tr>
