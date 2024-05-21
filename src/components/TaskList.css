@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    white-space: nowrap; /* テキストを折り返し禁止 */
+    overflow: hidden; /* コンテンツを表示範囲内に収める */
+    text-overflow: ellipsis; /* コンテンツが表示範囲を超えた場合に省略記号 (...) を表示 */
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-button, .delete-button, .register-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-button {
+    background-color: #28a745;
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #218838;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+.register-button {
+    background-color: #17a2b8;
+    color: white;
+    padding: 10px 20px; /* ボタンの大きさを調整 */
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.register-button:hover {
+    background-color: #138496;
+}
+
+
+
+th:nth-child(1), td:nth-child(1) { width: 30%; }
+th:nth-child(2), td:nth-child(2) { width: 30%; }
+th:nth-child(3), td:nth-child(3) { width: 20%; }
+th:nth-child(4), td:nth-child(4) { width: 20%; }
+
+.header {
+    text-align: center;
+    margin: 20px;
+}
+
+.add-task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.add-task a {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.add-task a:hover {
+    background-color: #0056b3;
+}
+
+.add-task a {
+    padding: 10px 20px; /* ボタンの大きさを調整 */
+    background-color: #007BFF;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.filter-form {
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-form input {
+    padding: 8px;
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.filter-form button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    flex-basis: 100px;
+}
+
+.filter-form button:hover {
+    background-color: #0056b3;
+}
