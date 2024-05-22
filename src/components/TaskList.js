@@ -6,6 +6,7 @@ function TaskList() {
   const [todos, setTodos] = useState([]);
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [filterWord , setFilterWord] = useState('');
+  const [isFilter, setIsFilter] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,6 +36,7 @@ function TaskList() {
     })
     .then(filteredData => {
       setFilteredTodos(filteredData.tasks);
+      setIsFilter(true);
     })
     .catch(error => {
       console.error('Error adding task:', error);
@@ -52,6 +54,7 @@ function TaskList() {
   const handleReset = () => {
     setFilteredTodos([]);
     setFilterWord('');
+    setIsFilter(false);  
   }
 
   return (
@@ -79,7 +82,7 @@ function TaskList() {
           </tr>
         </thead>
         <tbody>
-          {(filteredTodos.length > 0 ? filteredTodos : todos).map(todo => (
+          {(isFilter ? filteredTodos : todos).map(todo => (
             <tr key={todo.id}>
               <td>{todo.taskName.length > 25 ? todo.taskName.substring(0, 25) + '...' : todo.taskName}</td>
               <td>{todo.taskDescription.length > 25 ? todo.taskDescription.substring(0, 25) + '...' : todo.taskDescription}</td>
