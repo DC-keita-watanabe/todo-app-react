@@ -6,7 +6,6 @@ function AddTask() {
   const [taskName, setTaskName] = useState('');
   const [taskDescription, setTaskDescription] = useState('');
   const [assignPersonName, setAssignPersonName] = useState('');
-  const [estimateHour, setEstimateHour] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -16,7 +15,6 @@ function AddTask() {
       taskName: taskName,
       taskDescription: taskDescription,
       assignPersonName: assignPersonName,
-      estimateHour: estimateHour
     };
     // POSTリクエストを送信
     fetch('http://localhost:8080/create', {
@@ -33,7 +31,6 @@ function AddTask() {
         setTaskName('');
         setTaskDescription('');
         setAssignPersonName('');
-        setEstimateHour('');
         // リダイレクト
         navigate('/');
       } else {
@@ -70,14 +67,6 @@ function AddTask() {
             type="text"
             value={assignPersonName}
             onChange={(e) => setAssignPersonName(e.target.value)}
-            required
-          />
-        </p>
-        <p>
-          見積時間(h)：<input
-            type="number"
-            value={estimateHour}
-            onChange={(e) => setEstimateHour(e.target.value)}
             required
           />
         </p>
