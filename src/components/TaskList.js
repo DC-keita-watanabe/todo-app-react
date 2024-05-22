@@ -30,11 +30,11 @@ function TaskList() {
         <form className="filter-form" action="/filter" method="post">
           <input type="text" name="word" placeholder="検索..." />
           <button type="submit">検索</button>
-          <button type="button" className="reset" onClick={() => window.location.href='/'}>
+          <button type="button" className="reset" onClick={() => navigate('/')}>
             リセット
           </button>
+          <button className="register-button" type="button" onClick={() => navigate('/create')}>タスクを追加</button>
         </form>
-        <a className="register-button" href="/create">タスクを追加</a>
       </div>
       <table>
         <thead>
