@@ -4,14 +4,42 @@ import './TaskList.css'
 
 function TaskList() {
   const [todos, setTodos] = useState([]);
+  const [filteredTodos, setFilteredTodos] = useState([]);
+  const [filterWord , setFilterWord] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
     fetch('http://localhost:8080/api/tasks')
-      .then(response => response.json())
-      .then(data => setTodos(data))
+      .then(res => res.json())
+      .then(data => setTodos(data.tasks))
       .catch(error => console.error('Error fetching data:', error));
   }, []);
+
+  const filterTodo = (event) => {
+    event.preventDefault();
+    fetch(`http://localhost:8080/filter/${filterWord}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(filterWord)
+    })
+    .then(res => {
+      if (res.ok) {
+        console.log('Task filtered successfully');
+        return res.json();
+      } else {
+        console.error('Failed to filter task');
+        return [];
+      }
+    })
+    .then(filteredData => {
+      setFilteredTodos(filteredData.tasks);
+    })
+    .catch(error => {
+      console.error('Error adding task:', error);
+    });
+  };
 
   const handleDeleteClick = (todo) => {
     navigate('delete', { state: { todo } });
@@ -21,16 +49,21 @@ function TaskList() {
     navigate('edit', {state: {todo}});
   }
 
+  const handleReset = () => {
+    setFilteredTodos([]);
+    setFilterWord('');
+  }
+
   return (
     <div className="task-list">
       <div className="header">
         <h1>ToDo List</h1>
       </div>
       <div className="add-task">
-        <form className="filter-form" action="/filter" method="post">
-          <input type="text" name="word" placeholder="検索..." />
+        <form className="filter-form" method="post" onSubmit={filterTodo}>
+          <input type="text" name="word" value={filterWord} placeholder="検索..." onChange={(e) => { setFilterWord(e.target.value) }} />
           <button type="submit">検索</button>
-          <button type="button" className="reset" onClick={() => navigate('/')}>
+          <button type="button" className="reset" onClick={handleReset}>
             リセット
           </button>
           <button className="register-button" type="button" onClick={() => navigate('/create')}>タスクを追加</button>
@@ -46,7 +79,7 @@ function TaskList() {
           </tr>
         </thead>
         <tbody>
-          {todos.map(todo => (
+          {(filteredTodos.length > 0 ? filteredTodos : todos).map(todo => (
             <tr key={todo.id}>
               <td>{todo.taskName.length > 25 ? todo.taskName.substring(0, 25) + '...' : todo.taskName}</td>
               <td>{todo.taskDescription.length > 25 ? todo.taskDescription.substring(0, 25) + '...' : todo.taskDescription}</td>
