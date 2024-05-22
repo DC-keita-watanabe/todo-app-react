@@ -14,8 +14,12 @@ function TaskList() {
   }, []);
 
   const handleDeleteClick = (todo) => {
-    navigate(`/delete/${todo.id}`, { state: { todo } });
+    navigate('delete', { state: { todo } });
   };
+
+  const handlEditClick = (todo) => {
+    navigate('edit', {state: {todo}});
+  }
 
   return (
     <div className="task-list">
@@ -49,7 +53,7 @@ function TaskList() {
               <td>{todo.assignPersonName}</td>
               <td>
                 <div className="button-group">
-                  <button className="edit-button" onClick={() => navigate(`/edit-page/${todo.id}`)}>編集</button>
+                  <button className="edit-button" onClick={() => handlEditClick(todo)}>編集</button>
                   <button className="delete-button" onClick={() => handleDeleteClick(todo)}>削除</button>
                 </div>
               </td>
