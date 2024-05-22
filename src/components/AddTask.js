@@ -1,22 +1,10 @@
-import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "./AddTask.css";
+import TaskForm from './TaskForm';
 
 function AddTask() {
-  const [taskName, setTaskName] = useState('');
-  const [taskDescription, setTaskDescription] = useState('');
-  const [assignPersonName, setAssignPersonName] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // フォームデータを作成
-    const formData = {
-      taskName: taskName,
-      taskDescription: taskDescription,
-      assignPersonName: assignPersonName,
-    };
-    // POSTリクエストを送信
+  const handleSubmit = (formData) => {
     fetch('http://localhost:8080/create', {
       method: 'POST',
       headers: {
@@ -24,14 +12,9 @@ function AddTask() {
       },
       body: JSON.stringify(formData)
     })
-    .then(response => {
-      if (response.ok) {
+    .then(res => {
+      if (res.ok) {
         console.log('Task added successfully');
-        // フォームをリセット
-        setTaskName('');
-        setTaskDescription('');
-        setAssignPersonName('');
-        // リダイレクト
         navigate('/');
       } else {
         console.error('Failed to add task');
@@ -43,37 +26,11 @@ function AddTask() {
   };
 
   return (
-    <div className="container">
-      <h2>タスクを追加</h2>
-      <form onSubmit={handleSubmit}>
-        <p>
-          タスクの名前：<input
-            type="text"
-            value={taskName}
-            onChange={(e) => setTaskName(e.target.value)}
-            required
-          />
-        </p>
-        <p>
-          タスクの説明：<input
-            type="text"
-            value={taskDescription}
-            onChange={(e) => setTaskDescription(e.target.value)}
-            required
-          />
-        </p>
-        <p>
-          担当者の名前：<input
-            type="text"
-            value={assignPersonName}
-            onChange={(e) => setAssignPersonName(e.target.value)}
-            required
-          />
-        </p>
-        <input type="submit" value="追加" />
-      </form>
-      <button className="cancel-button" onClick={() => navigate('/')}>キャンセル</button>
-    </div>
+    <TaskForm
+      initialValues={{taskName : '', taskDescription : '', assignPersonName : ''}}
+      onSubmit={handleSubmit}
+      buttonText="追加"
+     />
   );
 }
 
