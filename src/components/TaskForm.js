@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import './EditTask.css';
+import './css/TaskForm.css';
 
 const TaskForm = ({initialValues, onSubmit, buttonText}) => {
     const navigate = useNavigate();

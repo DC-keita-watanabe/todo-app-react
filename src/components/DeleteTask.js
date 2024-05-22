@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import './DeleteTask.css';
+import './css/DeleteTask.css';
 
 const DeleteTask = () => {
     const navigate = useNavigate();
