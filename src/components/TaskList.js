@@ -48,8 +48,8 @@ function TaskList() {
         <tbody>
           {todos.map(todo => (
             <tr key={todo.id}>
-              <td>{todo.taskName.length > 10 ? todo.taskName.substring(0, 10) + '...' : todo.taskName}</td>
-              <td>{todo.taskDescription.length > 10 ? todo.taskDescription.substring(0, 10) + '...' : todo.taskDescription}</td>
+              <td>{todo.taskName.length > 25 ? todo.taskName.substring(0, 25) + '...' : todo.taskName}</td>
+              <td>{todo.taskDescription.length > 25 ? todo.taskDescription.substring(0, 25) + '...' : todo.taskDescription}</td>
               <td>{todo.assignPersonName}</td>
               <td>
                 <div className="button-group">
