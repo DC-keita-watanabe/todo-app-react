@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./AddTask.css";
 
 function AddTask() {
@@ -6,6 +7,7 @@ function AddTask() {
   const [taskDescription, setTaskDescription] = useState('');
   const [assignPersonName, setAssignPersonName] = useState('');
   const [estimateHour, setEstimateHour] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -33,7 +35,7 @@ function AddTask() {
         setAssignPersonName('');
         setEstimateHour('');
         // リダイレクト
-        window.location.href = "/";
+        navigate('/');
       } else {
         console.error('Failed to add task');
       }
@@ -81,7 +83,7 @@ function AddTask() {
         </p>
         <input type="submit" value="追加" />
       </form>
-      <a href="/">戻る</a>
+      <button className="cancel-button" onClick={() => navigate('/')}>キャンセル</button>
     </div>
   );
 }
