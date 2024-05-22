@@ -62,20 +62,6 @@ tr:hover {
     background-color: #c82333;
 }
 
-.register-button {
-    background-color: #17a2b8;
-    color: white;
-    padding: 10px 20px; /* ボタンの大きさを調整 */
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.register-button:hover {
-    background-color: #138496;
-}
-
-
-
 th:nth-child(1), td:nth-child(1) { width: 30%; }
 th:nth-child(2), td:nth-child(2) { width: 30%; }
 th:nth-child(3), td:nth-child(3) { width: 20%; }
@@ -147,3 +133,7 @@ th:nth-child(4), td:nth-child(4) { width: 20%; }
 .filter-form button:hover {
     background-color: #0056b3;
 }
+
+.filter-form .register-button {
+    padding: 10px 10px; /* ボタンの大きさを調整 */
+}  
